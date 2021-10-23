@@ -3,8 +3,8 @@ require('dotenv').config()
 
   PORT=5000
   NODE_ENV=development
-  DEV_DATABASE_URL=postgresql://postgres:password@localhost:5432/database_name
-  TESTING_DATABASE_URL=postgresql://postgres:password@localhost:5432/testing_database_name
+  DEV_DATABASE_URL='postgresql://postgres:password@localhost:5432/database_name'
+  TESTING_DATABASE_URL='postgresql://postgres:password@localhost:5432/testing_database_name'
 
   Put the above in your .env file. Some adjustments in the connection URLs will be needed:
 
@@ -25,6 +25,13 @@ const sharedConfig = {
   client: 'pg',
   migrations: { directory: './api/data/migrations' },
   seeds: { directory: './api/data/seeds' },
+  //SQLite Testing Correction
+  // pool: {
+  //   afterCreate: (conn, done) => {
+  //     conn.run('PRAGMA foreign_keys = ON', done)
+  //     conn.run('PRAGMA journal_mode = OFF')
+  //   },
+  // },
 }
 
 module.exports = {
