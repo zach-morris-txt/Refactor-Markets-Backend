@@ -7,7 +7,14 @@ const md = require('../middleware/middleware')
 const tokenBuilder = require('../middleware/tokenBuilder')
 
 
-//Ednpoints
+//Endpoints
+router.get('/', (req, res, next) => {
+  res.status(200).json(
+    `My Auth Landing Page`
+  )
+})
+
+
 router.post('/register', 
   md.requireUsernamePassword, 
   md.checkUsernameTaken, 
