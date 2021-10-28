@@ -1,11 +1,7 @@
 //Imports
 const knex = require('knex');
-const configs = require('../../knexfile')
-
-
-//Environment Variables
-const environment = process.env.NODE_ENV || 'development';
+const config = require('../../knexfile.js')
 
 
 //Exports; Exposing
-module.exports = knex(configs[environment])
+module.exports = knex(config[process.env.NODE_ENV])

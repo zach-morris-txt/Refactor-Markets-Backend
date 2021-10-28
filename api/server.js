@@ -3,8 +3,9 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 
-const authRouter = require('./api/auth/auth-router')
-const itemsRouter = require('./api/items/items-router')
+const authRouter = require('./routerAuth/auth-router')
+const itemsRouter = require('./routerItems/items-router')
+const restricted = require('./middleware/restricted')
 
 
 //Instance Of Express App
@@ -18,12 +19,12 @@ server.use(cors())
 
 
 //Consuming Routers
-server.use('/api/auth', authRouter);
+server.use('/api/auth', restricted, authRouter);
 server.use('/api/items', itemsRouter);
 
 
 // "/" Endpoint
-server.get('/', (req, res, next) => {
+server.get('/', (req, res) => {
   res.status(200).json(
     `My Landing Page`
   )

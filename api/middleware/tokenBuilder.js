@@ -1,15 +1,15 @@
 //Imports
 const jwt = require('jsonwebtoken')
-const { SECRET } = require('../../config/secrets')
+const { SECRET } = require('../config/secrets')
 
 
 //Exports; Exposing
-module.exports = function (user) {
+function tokenBuilder(user) {
   const payload = {
-    subject: user.id,
+    subject: user.user_id,
     username: user.username,
     password: user.password,
-    role_name: user.role_name,
+    email: user.email,
   }
   const options = {
     expiresIn: '1d',
@@ -21,3 +21,7 @@ module.exports = function (user) {
   )
   return token
 }
+
+
+//Exports
+module.exports = tokenBuilder
