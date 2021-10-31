@@ -19,8 +19,8 @@ server.use(cors())
 
 
 //Consuming Routers
-server.use('/api/auth', restricted, authRouter);
-server.use('/api/items', itemsRouter);
+server.use('/api/auth', authRouter);
+server.use('/api/items', restricted, itemsRouter);
 
 
 // "/" Endpoint
