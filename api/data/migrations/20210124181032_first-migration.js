@@ -13,7 +13,6 @@ exports.up = function(knex) {
         tbl.string('item_name', 100).notNullable()
         tbl.string('item_description', 200).notNullable()
         tbl.string('item_location', 100).notNullable()
-        tbl.integer('item_price', 32).notNullable()
     })
 
     .createTable('users_items', table => {

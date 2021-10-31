@@ -20,15 +20,14 @@ const checkId = (req, res, next) => {
 }
 
 const confirmItem = (req, res, next) => {
-    const {item_name, item_description, item_location, item_price} = req.body
+    const {item_name, item_description, item_location} = req.body
     if (
         !item_name || item_name.trim() === null
         || !item_description || item_description.trim() === null
         || !item_location
-        || !item_price
     ) {
         res.status(400).json({
-            message: `All items must have a name, description, location, and price.`
+            message: `All items must have a name, description, and location.`
         })
     } else {
         next()

@@ -34,9 +34,9 @@ router.post('/user/:user_id', confirmItem, (req, res, next) => {
 })
 
 router.put('/:item_id', checkId,  confirmItem, (req, res, next) => {
-  const {item_name, item_description, item_location, item_price} = req.body
+  const {item_name, item_description, item_location} = req.body
   
-  Items.update(req.params.item_id, {item_name, item_description, item_location, item_price})
+  Items.update(req.params.item_id, {item_name, item_description, item_location})
   .then(() => {
       res.status(200).json(req.body)
   })
