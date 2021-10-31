@@ -5,7 +5,7 @@ const db = require('../data/db-config')
 //DATABASE FUNCTIONS
 function findAll() {
     return db('items as i')
-    .leftJoin('user_items as ui', 'i.item_id', 'ui.item_id')
+    .leftJoin('users_items as ui', 'i.item_id', 'ui.item_id')
     .leftJoin('users as u', 'ui.user_id', 'u.user_id')
     .select(
         'i.*',
@@ -22,7 +22,7 @@ function findBy(filter) {
 
 function findById(item_id) {
     return db('items as i')
-    .leftJoin('user_items as ui', 'i.item_id', 'ui.item_id')
+    .leftJoin('users_items as ui', 'i.item_id', 'ui.item_id')
     .leftJoin('users as u', 'ui.user_id', 'u.user_id')
     .select(
         'i.*',
@@ -35,7 +35,7 @@ function findById(item_id) {
 
 async function addItem(item, user_id) {
     const [item_id] = await db('items').insert(item, 'item_id')
-    await db('user_items').insert({item_id: item_id, user_id:user_id.user_id})
+    await db('users_items').insert({item_id: item_id, user_id:user_id.user_id})
     return db('items').where({item_id}).first()
 }
 
